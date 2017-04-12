@@ -115,7 +115,6 @@ void GMainWindow::InitializeWidgets() {
         statusBar()->addPermanentWidget(label);
     }
     statusBar()->setVisible(true);
-	setStyleSheet("QStatusBar::item{border: none;}");
 }
 
 void GMainWindow::InitializeDebugWidgets() {
