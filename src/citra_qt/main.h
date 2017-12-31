@@ -48,6 +48,7 @@ class GMainWindow : public QMainWindow {
 public:
     void filterBarSetChecked(bool state);
     void UpdateUITheme();
+    void SyncMenuUISettings();
     GMainWindow();
     ~GMainWindow();
 
@@ -141,6 +142,9 @@ private slots:
     void OnToggleFilterBar();
     void OnDisplayTitleBars(bool);
     void ToggleFullscreen();
+    void ChangeScreenLayout();
+    void ToggleScreenLayout();
+    void SwapScreens();
     void ShowFullscreen();
     void HideFullscreen();
     void ToggleWindowMode();
