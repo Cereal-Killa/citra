@@ -929,6 +929,36 @@ void GMainWindow::SwapScreens()
     Settings::Apply();
 }
 
+void GMainWindow::ToggleScreenLayout()
+{
+    Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
+
+    switch (Settings::values.layout_option)
+    {
+    case Settings::LayoutOption::Default:
+        newlayout = Settings::LayoutOption::SingleScreen;
+        break;
+    case Settings::LayoutOption::SingleScreen:
+        newlayout = Settings::LayoutOption::LargeScreen;
+        break;
+    case Settings::LayoutOption::LargeScreen:
+        newlayout = Settings::LayoutOption::SideScreen;
+        break;
+    case Settings::LayoutOption::SideScreen:
+        newlayout = Settings::LayoutOption::Default;
+        break;
+    }
+
+    Settings::values.layout_option = newlayout;
+    Settings::Apply();
+}
+
+void GMainWindow::SwapScreens()
+{
+    Settings::values.swap_screen = ui.action_Screen_Layout_Swap_Screens->isChecked();
+    Settings::Apply();
+}
+
 void GMainWindow::OnConfigure() {
     ConfigureDialog configureDialog(this);
     auto result = configureDialog.exec();
