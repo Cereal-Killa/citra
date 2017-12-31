@@ -48,6 +48,7 @@ class GMainWindow : public QMainWindow {
 public:
     void filterBarSetChecked(bool state);
     void UpdateUITheme();
+    void SyncMenuUISettings();
     GMainWindow();
     ~GMainWindow();
 
@@ -136,11 +137,13 @@ private slots:
     /// Called whenever a user selects the "File->Select Game List Root" menu item
     void OnMenuSelectGameListRoot();
     void OnMenuRecentFile();
-    void OnSwapScreens();
     void OnConfigure();
     void OnToggleFilterBar();
     void OnDisplayTitleBars(bool);
     void ToggleFullscreen();
+    void ChangeScreenLayout();
+    void ToggleScreenLayout();
+    void SwapScreens();
     void ShowFullscreen();
     void HideFullscreen();
     void ToggleWindowMode();
