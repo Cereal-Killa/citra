@@ -904,8 +904,7 @@ void GMainWindow::ToggleScreenLayout()
 {
     Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
 
-    switch (Settings::values.layout_option)
-    {
+    switch (Settings::values.layout_option) {
     case Settings::LayoutOption::Default:
         newlayout = Settings::LayoutOption::SingleScreen;
         break;
