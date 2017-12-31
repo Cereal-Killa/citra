@@ -382,6 +382,7 @@ void GMainWindow::ConnectMenuEvents() {
     connect(ui.action_Show_Filter_Bar, &QAction::triggered, this, &GMainWindow::OnToggleFilterBar);
     connect(ui.action_Show_Status_Bar, &QAction::triggered, statusBar(), &QStatusBar::setVisible);
     ui.action_Fullscreen->setShortcut(GetHotkey("Main Window", "Fullscreen", this)->key());
+    ui.action_Screen_Layout_Swap_Screens->setShortcut(GetHotkey("Main Window", "Swap Screens", this)->key());
     connect(ui.action_Fullscreen, &QAction::triggered, this, &GMainWindow::ToggleFullscreen);
     connect(ui.action_Screen_Layout_Default, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
     connect(ui.action_Screen_Layout_Single_Screen, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
