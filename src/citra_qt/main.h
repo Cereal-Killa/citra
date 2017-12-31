@@ -48,7 +48,6 @@ class GMainWindow : public QMainWindow {
 public:
     void filterBarSetChecked(bool state);
     void UpdateUITheme();
-    void SyncMenuUISettings();
     GMainWindow();
     ~GMainWindow();
 
@@ -78,6 +77,7 @@ private:
     void InitializeHotkeys();
 
     void SetDefaultUIGeometry();
+    void SyncMenuUISettings();
     void RestoreUIState();
 
     void ConnectWidgetEvents();
