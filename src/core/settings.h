@@ -37,8 +37,6 @@ enum Values {
     ZR,
 
     Home,
-    SwapScreens,
-    ToggleLayout,
 
     NumButtons,
 };
@@ -58,7 +56,7 @@ constexpr int NUM_BUTTONS_NS = BUTTON_NS_END - BUTTON_NS_BEGIN;
 static const std::array<const char*, NumButtons> mapping = {{
     "button_a", "button_b", "button_x", "button_y", "button_up", "button_down", "button_left",
     "button_right", "button_l", "button_r", "button_start", "button_select", "button_zl",
-    "button_zr", "button_home", "buttonSwapScreens", "buttonToggleLayout",
+    "button_zr", "button_home",
 }};
 } // namespace NativeButton
 
