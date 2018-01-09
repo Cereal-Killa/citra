@@ -189,7 +189,7 @@ void GMainWindow::InitializeWidgets() {
     // Removes an ugly inner border from the status bar widgets under Linux
     setStyleSheet("QStatusBar::item{border: none;}");
 
-    QActionGroup *actionGroup_ScreenLayouts = new QActionGroup(this);
+    QActionGroup* actionGroup_ScreenLayouts = new QActionGroup(this);
     actionGroup_ScreenLayouts->addAction(ui.action_Screen_Layout_Default);
     actionGroup_ScreenLayouts->addAction(ui.action_Screen_Layout_Single_Screen);
     actionGroup_ScreenLayouts->addAction(ui.action_Screen_Layout_Large_Screen);
@@ -284,8 +284,8 @@ void GMainWindow::InitializeHotkeys() {
             &GMainWindow::OnStartGame);
     connect(GetHotkey("Main Window", "Swap Screens", render_window), &QShortcut::activated,
             ui.action_Screen_Layout_Swap_Screens, &QAction::trigger);
-    connect(GetHotkey("Main Window", "Toggle Screen Layout", render_window), &QShortcut::activated, this,
-            &GMainWindow::ToggleScreenLayout);
+    connect(GetHotkey("Main Window", "Toggle Screen Layout", render_window), &QShortcut::activated,
+            this, &GMainWindow::ToggleScreenLayout);
     connect(GetHotkey("Main Window", "Fullscreen", render_window), &QShortcut::activated,
             ui.action_Fullscreen, &QAction::trigger);
     connect(GetHotkey("Main Window", "Fullscreen", render_window), &QShortcut::activatedAmbiguously,
@@ -382,14 +382,20 @@ void GMainWindow::ConnectMenuEvents() {
     connect(ui.action_Show_Filter_Bar, &QAction::triggered, this, &GMainWindow::OnToggleFilterBar);
     connect(ui.action_Show_Status_Bar, &QAction::triggered, statusBar(), &QStatusBar::setVisible);
     ui.action_Fullscreen->setShortcut(GetHotkey("Main Window", "Fullscreen", this)->key());
-    ui.action_Screen_Layout_Swap_Screens->setShortcut(GetHotkey("Main Window", "Swap Screens", this)->key());
+    ui.action_Screen_Layout_Swap_Screens->setShortcut(
+        GetHotkey("Main Window", "Swap Screens", this)->key());
     ui.action_Screen_Layout_Swap_Screens->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     connect(ui.action_Fullscreen, &QAction::triggered, this, &GMainWindow::ToggleFullscreen);
-    connect(ui.action_Screen_Layout_Default, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
-    connect(ui.action_Screen_Layout_Single_Screen, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
-    connect(ui.action_Screen_Layout_Large_Screen, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
-    connect(ui.action_Screen_Layout_Side_by_Side, &QAction::triggered, this, &GMainWindow::ChangeScreenLayout);
-    connect(ui.action_Screen_Layout_Swap_Screens, &QAction::triggered, this, &GMainWindow::SwapScreens);
+    connect(ui.action_Screen_Layout_Default, &QAction::triggered, this,
+            &GMainWindow::ChangeScreenLayout);
+    connect(ui.action_Screen_Layout_Single_Screen, &QAction::triggered, this,
+            &GMainWindow::ChangeScreenLayout);
+    connect(ui.action_Screen_Layout_Large_Screen, &QAction::triggered, this,
+            &GMainWindow::ChangeScreenLayout);
+    connect(ui.action_Screen_Layout_Side_by_Side, &QAction::triggered, this,
+            &GMainWindow::ChangeScreenLayout);
+    connect(ui.action_Screen_Layout_Swap_Screens, &QAction::triggered, this,
+            &GMainWindow::SwapScreens);
 
     // Help
     connect(ui.action_FAQ, &QAction::triggered,
@@ -888,21 +894,23 @@ void GMainWindow::ToggleWindowMode() {
     }
 }
 
-void GMainWindow::ChangeScreenLayout()
-{
+void GMainWindow::ChangeScreenLayout() {
     Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
 
-    if (ui.action_Screen_Layout_Default->isChecked()) newlayout = Settings::LayoutOption::Default;
-    else if (ui.action_Screen_Layout_Single_Screen->isChecked()) newlayout = Settings::LayoutOption::SingleScreen;
-    else if (ui.action_Screen_Layout_Large_Screen->isChecked()) newlayout = Settings::LayoutOption::LargeScreen;
-    else if (ui.action_Screen_Layout_Side_by_Side->isChecked()) newlayout = Settings::LayoutOption::SideScreen;
+    if (ui.action_Screen_Layout_Default->isChecked())
+        newlayout = Settings::LayoutOption::Default;
+    else if (ui.action_Screen_Layout_Single_Screen->isChecked())
+        newlayout = Settings::LayoutOption::SingleScreen;
+    else if (ui.action_Screen_Layout_Large_Screen->isChecked())
+        newlayout = Settings::LayoutOption::LargeScreen;
+    else if (ui.action_Screen_Layout_Side_by_Side->isChecked())
+        newlayout = Settings::LayoutOption::SideScreen;
 
     Settings::values.layout_option = newlayout;
     Settings::Apply();
 }
 
-void GMainWindow::ToggleScreenLayout()
-{
+void GMainWindow::ToggleScreenLayout() {
     Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
 
     switch (Settings::values.layout_option) {
@@ -924,8 +932,7 @@ void GMainWindow::ToggleScreenLayout()
     Settings::Apply();
 }
 
-void GMainWindow::SwapScreens()
-{
+void GMainWindow::SwapScreens() {
     Settings::values.swap_screen = ui.action_Screen_Layout_Swap_Screens->isChecked();
     Settings::Apply();
 }
@@ -1141,12 +1148,15 @@ void GMainWindow::UpdateUITheme() {
     }
 }
 
-void GMainWindow::SyncMenuUISettings()
-{
-    ui.action_Screen_Layout_Default->setChecked(Settings::values.layout_option == Settings::LayoutOption::Default);
-    ui.action_Screen_Layout_Single_Screen->setChecked(Settings::values.layout_option == Settings::LayoutOption::SingleScreen);
-    ui.action_Screen_Layout_Large_Screen->setChecked(Settings::values.layout_option == Settings::LayoutOption::LargeScreen);
-    ui.action_Screen_Layout_Side_by_Side->setChecked(Settings::values.layout_option == Settings::LayoutOption::SideScreen);
+void GMainWindow::SyncMenuUISettings() {
+    ui.action_Screen_Layout_Default->setChecked(Settings::values.layout_option ==
+        Settings::LayoutOption::Default);
+    ui.action_Screen_Layout_Single_Screen->setChecked(Settings::values.layout_option ==
+        Settings::LayoutOption::SingleScreen);
+    ui.action_Screen_Layout_Large_Screen->setChecked(Settings::values.layout_option ==
+        Settings::LayoutOption::LargeScreen);
+    ui.action_Screen_Layout_Side_by_Side->setChecked(Settings::values.layout_option ==
+        Settings::LayoutOption::SideScreen);
     ui.action_Screen_Layout_Swap_Screens->setChecked(Settings::values.swap_screen);
 }
 
