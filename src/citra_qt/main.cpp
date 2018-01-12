@@ -895,40 +895,41 @@ void GMainWindow::ToggleWindowMode() {
 }
 
 void GMainWindow::ChangeScreenLayout() {
-    Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
+    Settings::LayoutOption new_layout = Settings::LayoutOption::Default;
 
-    if (ui.action_Screen_Layout_Default->isChecked())
-        newlayout = Settings::LayoutOption::Default;
-    else if (ui.action_Screen_Layout_Single_Screen->isChecked())
-        newlayout = Settings::LayoutOption::SingleScreen;
-    else if (ui.action_Screen_Layout_Large_Screen->isChecked())
-        newlayout = Settings::LayoutOption::LargeScreen;
-    else if (ui.action_Screen_Layout_Side_by_Side->isChecked())
-        newlayout = Settings::LayoutOption::SideScreen;
+    if (ui.action_Screen_Layout_Default->isChecked()) {
+        new_layout = Settings::LayoutOption::Default;
+    } else if (ui.action_Screen_Layout_Single_Screen->isChecked()) {
+        new_layout = Settings::LayoutOption::SingleScreen;
+    } else if (ui.action_Screen_Layout_Large_Screen->isChecked()) {
+        new_layout = Settings::LayoutOption::LargeScreen;
+    } else if (ui.action_Screen_Layout_Side_by_Side->isChecked()) {
+        new_layout = Settings::LayoutOption::SideScreen;
+    }
 
-    Settings::values.layout_option = newlayout;
+    Settings::values.layout_option = new_layout;
     Settings::Apply();
 }
 
 void GMainWindow::ToggleScreenLayout() {
-    Settings::LayoutOption newlayout = Settings::LayoutOption::Default;
+    Settings::LayoutOption new_layout = Settings::LayoutOption::Default;
 
     switch (Settings::values.layout_option) {
     case Settings::LayoutOption::Default:
-        newlayout = Settings::LayoutOption::SingleScreen;
+        new_layout = Settings::LayoutOption::SingleScreen;
         break;
     case Settings::LayoutOption::SingleScreen:
-        newlayout = Settings::LayoutOption::LargeScreen;
+        new_layout = Settings::LayoutOption::LargeScreen;
         break;
     case Settings::LayoutOption::LargeScreen:
-        newlayout = Settings::LayoutOption::SideScreen;
+        new_layout = Settings::LayoutOption::SideScreen;
         break;
     case Settings::LayoutOption::SideScreen:
-        newlayout = Settings::LayoutOption::Default;
+        new_layout = Settings::LayoutOption::Default;
         break;
     }
 
-    Settings::values.layout_option = newlayout;
+    Settings::values.layout_option = new_layout;
     Settings::Apply();
 }
 
