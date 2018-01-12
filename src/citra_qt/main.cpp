@@ -1150,13 +1150,13 @@ void GMainWindow::UpdateUITheme() {
 
 void GMainWindow::SyncMenuUISettings() {
     ui.action_Screen_Layout_Default->setChecked(Settings::values.layout_option ==
-        Settings::LayoutOption::Default);
+                                                Settings::LayoutOption::Default);
     ui.action_Screen_Layout_Single_Screen->setChecked(Settings::values.layout_option ==
-        Settings::LayoutOption::SingleScreen);
+                                                      Settings::LayoutOption::SingleScreen);
     ui.action_Screen_Layout_Large_Screen->setChecked(Settings::values.layout_option ==
-        Settings::LayoutOption::LargeScreen);
+                                                     Settings::LayoutOption::LargeScreen);
     ui.action_Screen_Layout_Side_by_Side->setChecked(Settings::values.layout_option ==
-        Settings::LayoutOption::SideScreen);
+                                                     Settings::LayoutOption::SideScreen);
     ui.action_Screen_Layout_Swap_Screens->setChecked(Settings::values.swap_screen);
 }
 
