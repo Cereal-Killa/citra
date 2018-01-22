@@ -395,7 +395,7 @@ void GMainWindow::ConnectMenuEvents() {
     connect(ui.action_Screen_Layout_Side_by_Side, &QAction::triggered, this,
             &GMainWindow::ChangeScreenLayout);
     connect(ui.action_Screen_Layout_Swap_Screens, &QAction::triggered, this,
-            &GMainWindow::SwapScreens);
+            &GMainWindow::OnSwapScreens);
 
     // Help
     connect(ui.action_FAQ, &QAction::triggered,
@@ -933,7 +933,7 @@ void GMainWindow::ToggleScreenLayout() {
     Settings::Apply();
 }
 
-void GMainWindow::SwapScreens() {
+void GMainWindow::OnSwapScreens() {
     Settings::values.swap_screen = ui.action_Screen_Layout_Swap_Screens->isChecked();
     Settings::Apply();
 }

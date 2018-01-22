@@ -143,7 +143,7 @@ private slots:
     void ToggleFullscreen();
     void ChangeScreenLayout();
     void ToggleScreenLayout();
-    void SwapScreens();
+    void OnSwapScreens();
     void ShowFullscreen();
     void HideFullscreen();
     void ToggleWindowMode();
