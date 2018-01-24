@@ -277,7 +277,7 @@ void Init() {
     DLP::Init();
     FRD::Init();
     GSP::InstallInterfaces(*SM::g_service_manager);
-    HID::Init();
+    HID::InstallInterfaces(*SM::g_service_manager);
     IR::InstallInterfaces(*SM::g_service_manager);
     MVD::Init();
     NDM::Init();
@@ -285,7 +285,7 @@ void Init() {
     NFC::Init();
     NIM::Init();
     NWM::Init();
-    PTM::Init();
+    PTM::InstallInterfaces(*SM::g_service_manager);
     QTM::Init();
 
     AddService(new CSND::CSND_SND);
@@ -302,12 +302,10 @@ void Init() {
 
 /// Shutdown ServiceManager
 void Shutdown() {
-    PTM::Shutdown();
     NFC::Shutdown();
     NIM::Shutdown();
     NEWS::Shutdown();
     NDM::Shutdown();
-    HID::Shutdown();
     FRD::Shutdown();
     DLP::Shutdown();
     CFG::Shutdown();
