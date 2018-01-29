@@ -1154,6 +1154,45 @@ void GMainWindow::UpdateUITheme() {
     }
 }
 
+void GMainWindow::LoadTranslation() {
+    // If the selected language is English, no need to install any translation
+    if (UISettings::values.language == "en") {
+        return;
+    }
+
+    bool loaded;
+
+    if (UISettings::values.language.isEmpty()) {
+        // If the selected language is empty, use system locale
+        loaded = translator.load(QLocale(), "", "", ":/languages/");
+    } else {
+        // Otherwise load from the specified file
+        loaded = translator.load(UISettings::values.language, ":/languages/");
+    }
+
+    if (loaded) {
+        qApp->installTranslator(&translator);
+    } else {
+        UISettings::values.language = "en";
+    }
+}
+
+void GMainWindow::OnLanguageChanged(const QString& locale) {
+    if (UISettings::values.language != "en") {
+        qApp->removeTranslator(&translator);
+    }
+
+    UISettings::values.language = locale;
+    LoadTranslation();
+    ui.retranslateUi(this);
+    SetupUIStrings();
+}
+
+void GMainWindow::SetupUIStrings() {
+    setWindowTitle(
+        tr("Citra %1| %2-%3").arg(Common::g_build_name, Common::g_scm_branch, Common::g_scm_desc));
+}
+
 void GMainWindow::SyncMenuUISettings() {
     ui.action_Screen_Layout_Default->setChecked(Settings::values.layout_option ==
                                                 Settings::LayoutOption::Default);
